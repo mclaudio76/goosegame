@@ -8,7 +8,7 @@ public class Command {
 	public static final String MOVE_PLAYER   = "MOVE";
 	public static final String ADD_PLAYER    = "ADD PLAYER";
 	
-	private String text_command;
+	private String text_command; 
 	
 	public Command(String txt_command) {
 		// normalizes input, setting it to uppercase and removing unnecessary blank spaces
