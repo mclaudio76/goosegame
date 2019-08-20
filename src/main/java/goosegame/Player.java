@@ -1,6 +1,7 @@
 package goosegame;
 
 public class Player {
+	
 	private String ID 			= "";
 	private int    gamePosition = 0;
 	
