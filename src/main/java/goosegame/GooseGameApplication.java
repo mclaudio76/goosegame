@@ -12,13 +12,14 @@ import java.util.Scanner;
 public class GooseGameApplication {
 	
 	// Costanti
-	private final int THE_BRIDGE	  = 6; // Posizione che corrisponde al "brigde", il giocatore
+	public final static int THE_BRIDGE	  = 6; // Posizione che corrisponde al "brigde", il giocatore
 										   // che finisce in tale posizione 'salta' alla posizione 12 (BRIDGE END)
 	
-	private final int BRIDGE_END	  = 12; // Il punto in cui il giocatore finisce se entra nella casella BRIDGE
+	public final static int BRIDGE_END	  = 12; // Il punto in cui il giocatore finisce se entra nella casella BRIDGE
 	
-	private final int GOAL			  = 63; // Punto di arrivo (la partita finisce)
-	private final int START			  = 0;  // Punto di partenza
+	public final static int GOAL			  = 63; // Punto di arrivo (la partita finisce)
+	public final static int START			  = 0;  // Punto di partenza
+	
 	
 	private final int[] GOOSE_PLACES  = {5,9,14,18,23,27}; // Caselle in cui è presente un oca (raddoppio del lancio)
 	
@@ -175,9 +176,9 @@ public class GooseGameApplication {
 			}
 			else {
 				if(destination > GOAL) {
-				   outputText = rollDescr+" "+moveDescr+" "+origPosDescr+" to 63 ";
+				   outputText = rollDescr+" "+moveDescr+" "+origPosDescr+" to 63.";
 				   destination = GOAL - (destination - GOAL);
-				   outputText += "\n "+player.getID()+" bounces ! "+player.getID()+" returns to "+destination;
+				   outputText += "\n"+player.getID()+" bounces ! "+player.getID()+" returns to "+destination;
 				}
 				else {
 					outputText = rollDescr+" "+moveDescr+" "+origPosDescr+" to "+destination;

@@ -1,12 +1,42 @@
 package goosegame;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class GooseGameTest {
 
+	
+	@Test
+    public void testAggiuntaGiocatore () throws GooseGameException {
+		System.out.println(" Test : --> Aggiunta Giocatore ");
+		GooseGameApplication app = new GooseGameApplication();
+		app.processCommand(" ADD PLAYER PIPPO " );
+		assertNotNull(app.getPlayer("PIPPO"));
+	}
+	
+	@Test
+	public void testVittoria() throws GooseGameException {
+		System.out.println(" Test : --> Vittoria ");
+		GooseGameApplication app = new GooseGameApplication();
+		app.processCommand(" ADD PLAYER PIPPO " );
+		app.getPlayer("PIPPO").setGamePosition(60);
+		app.processCommand("MOVE PIPPO 1, 2");
+		assertEquals(app.getPlayer("PIPPO").getGamePosition(), GooseGameApplication.GOAL);
+	}
+	
+	@Test
+	public void testBounce() throws GooseGameException {
+		System.out.println(" Test : --> Superamento casella 63 ");
+		GooseGameApplication app = new GooseGameApplication();
+		app.processCommand(" ADD PLAYER PIPPO " );
+		app.getPlayer("PIPPO").setGamePosition(60);
+		app.processCommand("MOVE PIPPO 3, 2");
+		assertEquals(app.getPlayer("PIPPO").getGamePosition(), 61);
+	}
+	
 	
 	@Test
     public void testControlloGiocatoreUnivoco () throws GooseGameException {
@@ -38,22 +68,23 @@ public class GooseGameTest {
 	}
 	
 	@Test
-	public void testCasellaOca () throws GooseGameException {
-		System.out.println(" Test : --> Oca (singola) ");
+	public void testSingleJump () throws GooseGameException {
+		System.out.println(" Test : --> Singolo 'salto' per casella 'oca' ");
 		GooseGameApplication app = new GooseGameApplication();
 		app.processCommand(" ADD  PLAYER PIPPO " );
-		app.processCommand(" MOVE PIPPO 3,2 " ); // Posizione 5, oca , rilancia --> 10
-		assertEquals(app.getPlayer("PIPPO").getGamePosition(), 10);
+		app.processCommand(" MOVE PIPPO 1,2 " );
+		app.processCommand(" MOVE PIPPO 1,1 " ); // Posizione 5, oca , rilancia 2 --> 7
+		assertEquals(app.getPlayer("PIPPO").getGamePosition(), 7);
 	}
 	
 	@Test
     public void testCasellaOcaDoppia () throws GooseGameException {
-		System.out.println(" Test : --> Oca (doppia) ");
+		System.out.println(" Test : --> Doppio salto per casella 'oca' (ripetuta) ");
 		GooseGameApplication app = new GooseGameApplication();
 		app.processCommand(" ADD  PLAYER PIPPO " );
-		app.processCommand(" MOVE PIPPO 3,1 " ); // Posizione 4
-		app.processCommand(" MOVE PIPPO 3,2 " ); // Posizione 9 --> oca --> salta 14 (altra oca) --> 19.
-		assertEquals(app.getPlayer("PIPPO").getGamePosition(), 19);
+		app.processCommand(" MOVE PIPPO 5,5 " ); // Posizione 10
+		app.processCommand(" MOVE PIPPO 2,2 " ); // Posizione 14 --> oca --> salta a 18 --> altra oca --> finisce a 22.
+		assertEquals(app.getPlayer("PIPPO").getGamePosition(), 22);
 	}
 
 	@Test
