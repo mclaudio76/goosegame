@@ -1,9 +1,18 @@
 package goosegame;
 
+/***
+ * Rappresenta un giocatore.
+ * 
+ */
+
 public class Player {
 	
+	//Identificativo del giocatore (nei limiti di questa implementazione, corrisponde anche al suo nome)
 	private String ID 			= "";
+
+	// Casella occupata dal giocatore durante i vari turni di gioco
 	private int    gamePosition = 0;
+	
 	
 	public Player(String ID) {
 		this.ID = ID;

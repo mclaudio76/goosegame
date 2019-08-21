@@ -9,8 +9,10 @@ public class Command {
 	public static final String ADD_PLAYER    = "ADD PLAYER";
 	
 	private String text_command; 
+	private String[] command_params;
 	
-	public Command(String txt_command) {
+	
+	public Command(String txt_command) throws GooseGameException {
 		// normalizes input, setting it to uppercase and removing unnecessary blank spaces
 		boolean lastCharIsWhiteSpace = false;
 		StringBuilder sb 		= new StringBuilder();
@@ -28,11 +30,16 @@ public class Command {
 				lastCharIsWhiteSpace = false;
 			}
 		}
-		text_command = sb.toString().trim().toUpperCase();
+		text_command   = sb.toString().trim().toUpperCase();
+		command_params = parseCommand();
 	}
 	
 	
-	public String[] getCommandParams() throws GooseGameException {
+	public String[] getCommandParams() {
+		return command_params;
+	}
+	
+	private String[] parseCommand() throws GooseGameException {
 		String[] splitCmd = text_command.split(" ");
 		if(isEndCommand()) {
 			return new String[0];

@@ -1,2 +1,6 @@
 # goosegame
-Goose game project
+Gioco dell'oca - esercizio
+
+
+
+
