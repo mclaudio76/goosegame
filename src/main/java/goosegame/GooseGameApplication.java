@@ -243,7 +243,7 @@ public class GooseGameApplication {
 	}
 
 	
-	// Legge un comando da console
+	// Legge un comando da console 
 	private String readCommand() {
 		Scanner in = new Scanner(System.in);
 		System.out.print("[Enter command] >> ");

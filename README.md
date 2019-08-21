@@ -1,21 +1,23 @@
-# goosegame
-Gioco dell'oca
+# Gioco dell'oca
 
-Requisiti: Java JDK 1.8+ , Maven 3.0+
+#### Requisiti:
+Java JDK 1.8+ , Maven 3.0+
 
-Per compilare il programma
+
+#### Per compilare il programma
 
 mvn compile
 
-Esecuzione dei test
+#### Esecuzione dei test
 
 mvn test
 
-Esecuzione partita interattiva
+#### Esecuzione partita interattiva
 
 mvn exec:java
 
-Esecuzione partita demo (il programma gioca da solo)
+
+#### Esecuzione partita demo (il programma gioca da solo)
 
 mvn exec:java -Dexec.args="DEMO"
 
