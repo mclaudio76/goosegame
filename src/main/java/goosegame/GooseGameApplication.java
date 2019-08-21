@@ -32,6 +32,7 @@ public class GooseGameApplication {
 	
 	public GooseGameApplication() { }
 	
+	
 	/***
 	 * Avvia una partita interattiva. Viene letto l'input dell'utente,
 	 * che è uno dei comandi previsti dalle specifiche, fintanto che la partita 
@@ -223,23 +224,29 @@ public class GooseGameApplication {
 		return "" + pos;
 	}
 
+	// Emette a video un messaggio di output.
 	private void writeOutput(String string) {
 		System.out.println(string);	
 	}
 
+	// Dato un ID giocatore, ritorna l'istanza di Player corrispndente o null
+	// se non trovato.
 	private Player getPlayer(String ID) {
-		Player player     = players.get(players.indexOf(new Player(ID)));
-		return player;
+		try {
+			Player player     = players.get(players.indexOf(new Player(ID)));
+			return player;
+		}
+		catch(Exception e) {
+			return null;
+		}
 	}
 
 	
+	// Legge un comando da console
 	private String readCommand() {
-		String s = "";
-		try(Scanner in = new Scanner(System.in)) {
-			System.out.print("[Enter command] >> ");
-			s = in.nextLine();
-		}
-		return s;
+		Scanner in = new Scanner(System.in);
+		System.out.print("[Enter command] >> ");
+		return in.nextLine();
 	}
 	
 	
@@ -285,10 +292,8 @@ public class GooseGameApplication {
 
 	
 	public static void main(String...args) throws Exception {
-		//testPrank()
 		GooseGameApplication app = new GooseGameApplication();
-		app.playDemoGame();
-		//app.interactivePlay();
+		app.interactivePlay();
 	}
 	
 }
