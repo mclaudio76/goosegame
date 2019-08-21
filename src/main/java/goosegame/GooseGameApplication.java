@@ -245,7 +245,7 @@ public class GooseGameApplication {
 	
 	public static void main(String...args) throws Exception {
 		GooseGameApplication app = new GooseGameApplication();
-		if(args[0].equals("DEMO")) {
+		if(args.length > 1 && args[0].equals("DEMO")) {
 			app.playDemoGame();
 		}
 		else {
