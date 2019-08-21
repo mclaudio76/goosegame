@@ -90,7 +90,7 @@ public class GooseGameApplication {
 	 * @throws GooseGameException
 	 * @see Command
 	 */
-	private void processCommand(String command) throws GooseGameException {
+	public void processCommand(String command) throws GooseGameException {
 		Command c 		= new Command(command);
 		processCommand(c, false);
 	}
@@ -204,6 +204,7 @@ public class GooseGameApplication {
 					if(!cp.equals(player)) {
 						if(cp.getGamePosition() == player.getGamePosition()) {
 							writeOutput("On "+player.getGamePosition()+" is "+cp.getID()+", which returns to "+originalPosition);
+							cp.setGamePosition(originalPosition);
 						}
 					}
 				}
@@ -231,7 +232,7 @@ public class GooseGameApplication {
 
 	// Dato un ID giocatore, ritorna l'istanza di Player corrispndente o null
 	// se non trovato.
-	private Player getPlayer(String ID) {
+	public Player getPlayer(String ID) {
 		try {
 			Player player     = players.get(players.indexOf(new Player(ID)));
 			return player;
@@ -248,52 +249,16 @@ public class GooseGameApplication {
 		System.out.print("[Enter command] >> ");
 		return in.nextLine();
 	}
-	
-	
-	public static void test1() throws Exception {
-		GooseGameApplication app = new GooseGameApplication();
-		app.processCommand(" ADD PLAYER PIPPO " );
-		app.processCommand(" MOVE PIPPO 3, 3 "  );
-		app.processCommand(" MOVE PIPPO 1, 1 "  );
-	}
-	
-	public static void test2() throws Exception {
-		GooseGameApplication app = new GooseGameApplication();
-		app.processCommand(" ADD PLAYER PIPPO " );
-		app.processCommand(" MOVE PIPPO 6, 4 "  );
-		app.processCommand(" MOVE PIPPO 2, 2 "  );
-	}
-	
-	public static void test3() throws Exception {
-		GooseGameApplication app = new GooseGameApplication();
-		app.processCommand(" ADD PLAYER PIPPO " );
-		app.processCommand(" MOVE PIPPO 6, 7 "  );
-	}
-	
-
-	public static void test4() throws Exception {
-		GooseGameApplication app = new GooseGameApplication();
-		app.processCommand(" ADD PLAYER PIPPO " );
-		Player p = app.getPlayer("PIPPO");
-		p.setGamePosition(60);
-		app.processCommand(" MOVE PIPPO 2, 1 ");
-	}
-	
-	public static void testPrank() throws Exception {
-		GooseGameApplication app = new GooseGameApplication();
-		app.processCommand(" ADD PLAYER PIPPO " );
-		app.processCommand(" ADD PLAYER PLUTO " );
-		Player p = app.getPlayer("PLUTO");
-		p.setGamePosition(10);
-		Player p2 = app.getPlayer("PIPPO");
-		p2.setGamePosition(7);
-		app.processCommand(" MOVE PIPPO 2, 1 ");
-	}
 
 	
 	public static void main(String...args) throws Exception {
 		GooseGameApplication app = new GooseGameApplication();
-		app.interactivePlay();
+		if(args[0].equals("DEMO")) {
+			app.playDemoGame();
+		}
+		else {
+			app.interactivePlay();
+		}
 	}
 	
 }
