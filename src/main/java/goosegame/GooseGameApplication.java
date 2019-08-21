@@ -163,31 +163,23 @@ public class GooseGameApplication {
 			if(destination == THE_BRIDGE) {
 				destination = BRIDGE_END; // Posizione 12
 				outputText = rollDescr+" "+moveDescr+" "+origPosDescr+" to the bridge. "+player.getID()+" jumps to position 12.";
-				
-				//writeOutput(rollDescr+" "+moveDescr+" "+sourceName+" to the bridge. "+player.getID()+" jumps to position 12.");
 			}
 			else
 			if(isGoosePlace(destination)) { // Se 
-				//writeOutput(rollDescr+" "+moveDescr+" "+sourceName+" to "+destination+" (The Goose).");
 				outputText = rollDescr+" "+moveDescr+" "+origPosDescr+" to "+destination+" (The Goose).";
 			}
 			else
 			if(destination == GOAL) {
-				//writeOutput(rollDescr+" "+moveDescr+" "+sourceName+" to the GOAL");
-				//writeOutput(player.getID()+" WINS !!");
 				outputText = rollDescr+" "+moveDescr+" "+origPosDescr+" to the GOAL.\n"+player.getID()+" WINS !!";
 				gameActive = false;
 			}
 			else {
 				if(destination > GOAL) {
-				   //writeOutput(rollDescr+" "+moveDescr+" "+sourceName+" to 63 ");
 				   outputText = rollDescr+" "+moveDescr+" "+origPosDescr+" to 63 ";
 				   destination = GOAL - (destination - GOAL);
-				   //writeOutput(player.getID()+" bounces ! "+player.getID()+" returns to "+destination);
 				   outputText += "\n "+player.getID()+" bounces ! "+player.getID()+" returns to "+destination;
 				}
 				else {
-					//writeOutput(rollDescr+" "+moveDescr+" "+sourceName+" to "+destination);
 					outputText = rollDescr+" "+moveDescr+" "+origPosDescr+" to "+destination;
 				}
 			}
